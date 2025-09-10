@@ -14,16 +14,22 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Congratulations!';
   } else if (guess > secretNumber) {
-    document.querySelector('.message').textContent = 'Too high';
-    score--;
-    document.querySelector('.score').textContent = score;
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too high';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'Sorry, no more retries';
+      document.querySelector('.score').textContent = 0;
+    }
   } else if (guess < secretNumber) {
-    document.querySelector('.message').textContent = 'Too low';
-    score--;
-    document.querySelector('.score').textContent = score;
-  }
-
-  if (guess !== secretNumber) {
-    score - 1;
+    if (score > 1) {
+      document.querySelector('.message').textContent = 'Too low';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.message').textContent = 'Sorry, no more retries';
+      document.querySelector('.score').textContent = 0;
+    }
   }
 });
